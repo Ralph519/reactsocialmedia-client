@@ -8,11 +8,11 @@ import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Button from '@material-ui/core/Button';
 
-import MyButton from '../util/MyButton'
+import MyButton from '../../util/MyButton'
 import HomeIcon from '@material-ui/icons/Home'
 import Notifications from '@material-ui/icons/Notifications'
 
-import PostScream from './PostScream'
+import PostScream from '../scream/PostScream'
 
 export class Navbar extends Component {
     render() {

@@ -13,7 +13,7 @@ import { SET_AUTHENTICATED } from './redux/types';
 import { logoutUser, getUserData } from './redux/actions/userActions'
 
 // COmponents
-import Navbar from './components/Navbar'; 
+import Navbar from './components/layout/Navbar'; 
 import AuthRoute from './util/AuthRoute';
 
 import home from './pages/home';
@@ -23,7 +23,6 @@ import axios from 'axios';
 
 const theme = createMuiTheme(themeFile)
 
-let authenticated;
 const token = localStorage.FBIdToken;
 if(token){
   const decodedToken = jwtDecode(token);
@@ -35,8 +34,6 @@ if(token){
     axios.defaults.headers.common['Authorization'] = token
     store.dispatch(getUserData())
   }
-} else {
-  authenticated = false;
 }
 
 

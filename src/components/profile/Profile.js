@@ -14,11 +14,11 @@ import LocationOn from '@material-ui/icons/LocationOn'
 import CalendarToday from '@material-ui/icons/CalendarToday'
 
 import EditIcon from '@material-ui/icons/Edit';
-import { logoutUser, uploadImage } from '../redux/actions/userActions';
+import { logoutUser, uploadImage } from '../../redux/actions/userActions';
 import KeyboardReturn from '@material-ui/icons/KeyboardReturn';
-import EditDetails from '../components/EditDetails';
+import EditDetails from './EditDetails';
 
-import MyButton from '../util/MyButton'
+import MyButton from '../../util/MyButton'
 
 
 const styles = (theme) => ({
@@ -145,11 +145,11 @@ class Profile extends Component {
                         <span>Joined {dayjs(createdAt).format('MMM YYYY')}</span>
                     </div>
                     <MyButton 
-                          tip="Logout" 
-                          onClick={this.handleLogout} 
-                        >
-                          <KeyboardReturn color="primary"/>
-                        </MyButton>
+                      tip="Logout" 
+                      onClick={this.handleLogout} 
+                    >
+                      <KeyboardReturn color="primary"/>
+                    </MyButton>
                     <EditDetails/>
                 </div>
             </Paper>
