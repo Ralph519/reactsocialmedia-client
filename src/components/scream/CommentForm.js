@@ -18,8 +18,17 @@ class CommentForm extends Component {
         body: '',
         errors: {}
     }
+    // static getDerivedStateFromProps(nextProps) {
 
-    componentWillReceiveProps(nextProps){
+    //     if(nextProps.UI.errors){
+    //         this.setState({errors: nextProps.UI.errors})
+    //     }
+    //     if(!nextProps.UI.errors && !nextProps.UI.loading){
+    //         this.setState({body:''})
+    //     }
+    // }
+
+    UNSAFE_componentWillReceiveProps(nextProps){
         if(nextProps.UI.errors){
             this.setState({errors: nextProps.UI.errors})
         }
@@ -30,6 +39,7 @@ class CommentForm extends Component {
 
     handleChange = (event) => {
         this.setState({ [event.target.name]: event.target.value})
+        
     }
     handleSubmit = (event) => {
         event.preventDefault();
@@ -75,6 +85,7 @@ CommentForm.propTypes = {
     submitComment: PropTypes.func.isRequired,
     UI: PropTypes.object.isRequired,
     classes: PropTypes.object.isRequired,
+    screamId: PropTypes.string.isRequired,
     authenticated: PropTypes.bool.isRequired,
 }
 

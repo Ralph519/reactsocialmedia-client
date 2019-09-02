@@ -99,7 +99,7 @@ export const getScream = (screamId) => (dispatch) => {
 }
 
 export const submitComment = (screamId, commentData) => (dispatch) => {
-    axios.post(`scream/${screamId}/comment`, commentData)
+    axios.post(`/scream/${screamId}/comment`, commentData)
         .then((res) => {
             dispatch({
                 type: SUBMIT_COMMENT,
@@ -111,6 +111,23 @@ export const submitComment = (screamId, commentData) => (dispatch) => {
             dispatch({
                 type: SET_ERRORS,
                 payload: err.response.data
+            })
+        })
+}
+
+export const getUserData = (userHandle) => (dispatch) => {
+    dispatch({ type: LOADING_DATA });
+    axios.get(`/user/${userHandle}`)
+        .then((res) => {
+            dispatch({
+                type: SET_SCREAMS,
+                payload: res.data.screams
+            })
+        })
+        .catch(err => {
+            dispatch({
+                type: SET_SCREAMS,
+                payload: null
             })
         })
 }

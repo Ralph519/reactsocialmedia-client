@@ -19,3 +19,15 @@ a{
 .nav-container svg{
   color: #fff; 
 }
+
+.profilepaper {
+  padding: 20px!important
+}
+
+.profilebuttons {
+  text-align: center;
+}
+
+.profilebuttons > a {
+  margin: 20px 10px;
+}

@@ -20,11 +20,9 @@ import EditDetails from './EditDetails';
 
 import MyButton from '../../util/MyButton'
 
+import ProfileSkeleton from '../../util/ProfileSkeleton'
 
 const styles = (theme) => ({
-    paper: {
-      padding: 20
-    },
     profile: {
       '& .image-wrapper': {
         textAlign: 'center',
@@ -154,11 +152,11 @@ class Profile extends Component {
                 </div>
             </Paper>
         ) : (
-            <Paper className="classes.paper">
+            <Paper className="profilepaper">
                 <Typography variant="body2" align="center">
                     No Profile found, Please login again
                 </Typography>
-                <div className="classes.buttons">
+                <div className="profilebuttons">
                     <Button variant="contained" color="primary" component={Link} to="/login">
                         Login
                     </Button>
@@ -167,7 +165,7 @@ class Profile extends Component {
                     </Button>
                 </div>
             </Paper>
-        )) : (<p>loading...</p>)
+        )) : (<ProfileSkeleton/>)
 
         return profileMarkUp
     }

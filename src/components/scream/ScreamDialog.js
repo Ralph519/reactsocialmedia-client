@@ -23,8 +23,11 @@ import Comments from './Comments'
 import CommentForm from './CommentForm'
 
 
-const styles = theme => ({
-    ...theme.spreadIt,
+const styles = (theme) => ({
+    invisibleSeparator: {
+        border: 'none',
+        margin: 4
+    },
     profileImage: {
         maxWidth: 200,
         height: 200,
@@ -51,13 +54,30 @@ const styles = theme => ({
 
 class ScreamDialog extends Component{
     state = {
-        open: false
+        open: false,
+        oldPath: '',
+        newPath: ''
+    }
+    componentDidMount() {
+        if(this.props.openDialog){
+            this.handleOpen() 
+        }
     }
     handleOpen = () => {
-        this.setState({ open: true});
+        let oldPath = window.location.pathname
+
+        const { userHandle, screamId } = this.props
+        const newPath = `/users/${userHandle}/scream/${screamId}`
+
+        if(oldPath===newPath) oldPath = `/users/${userHandle}`
+
+        window.history.pushState(null, null, newPath)
+
+        this.setState({ open: true, oldPath, newPath});
         this.props.getScream(this.props.screamId)
     }
     handleClose = () => {
+        window.history.pushState(null, null, this.state.oldPath)
         this.setState({ open: false})
         this.props.clearErrors()
     }
@@ -82,7 +102,7 @@ class ScreamDialog extends Component{
                     <CircularProgress size={200} thickness={2}/>
                 </div>
             ) : (
-                <Grid container spacing={16}>
+                <Grid container spacing={12}>
                     <Grid item sm={5}>
                         <img src={userImage} alt="Profile" className={classes.profileImage}/>
                     </Grid>
@@ -94,11 +114,13 @@ class ScreamDialog extends Component{
                             to={`/users/${userHandle}`}>
                                 @{userHandle}
                             </Typography>
-                            <hr className={classes.invisibleSepartor}/>
+                            {/* <hr className={classes.invisibleSeparator}/> */}
+                            <br/>
                             <Typography variant="body2" color="textSecondary">
                                 {dayjs(createdAt).format('h:mm a, MMMM DD YYYY')}
                             </Typography>
-                            <hr className={classes.invisibleSepartor}/>
+                            {/* <hr className={classes.invisibleSepartor}/> */}
+                            <br/>
                             <Typography variant="body1">
                                 {body}
                             </Typography>

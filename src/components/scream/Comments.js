@@ -9,7 +9,7 @@ import { Link } from 'react-router-dom'
 import dayjs from 'dayjs'
 
 const styles = theme => ({
-    ...theme.spreadit,
+    // ...theme.spreadit,
     commentImage: {
         maxWidth: '100%',
         height: 100,
@@ -17,7 +17,7 @@ const styles = theme => ({
         borderRadius: '50%'
     },
     commentData: {
-        marginLeft: 20
+        marginLeft: 10
     }
 })
 
@@ -47,7 +47,8 @@ class Comments extends Component{
                                             <Typography variant="body2" color="textSecondary">
                                                 {dayjs(createdAt).format('h:mm a, MMMM DD YYYY')}
                                             </Typography>
-                                            <hr className={classes.invisibleSeparator}/>
+                                            {/* <hr className={classes.invisibleSeparator}/> */}
+                                            <br/>
                                             <Typography variant="body1">{body}</Typography>
                                         </div>
                                     </Grid>

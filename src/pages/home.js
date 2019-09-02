@@ -8,15 +8,20 @@ import { connect } from 'react-redux'
 import { getScreams } from '../redux/actions/dataActions'
 import PropTypes from 'prop-types'
 
+import ScreamSkeleton from '../util/ScreamSkeleton'
+
 export class home extends Component {
     componentDidMount(){
         this.props.getScreams()
     }
     render() {
         const { screams, loading } = this.props.data
+
         let recentScreamsMarkup = !loading ? (
-            screams.map((scream) => <Scream scream={scream} key={scream.screamId}/>)
-        ) : <p>Loading...</p>
+            screams.map((scream) => 
+            <Scream scream={scream} key={scream.screamId}/>)
+        ) : <ScreamSkeleton/>
+
         return (
             <Grid container spacing={10}>
                 <Grid item sm={8} xs={12}>
